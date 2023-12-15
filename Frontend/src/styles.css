@@ -10,9 +10,10 @@ html{
 }
 
 body{
-    margin: 0;
-    font-family: "Quicksand";
+    margin: 0;   
+    font-family: "Quicksand", "sans-serif";
 }
+
 a{
     text-decoration: none;
 }
