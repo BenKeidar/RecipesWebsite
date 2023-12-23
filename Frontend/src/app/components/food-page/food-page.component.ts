@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Food } from '../shared/models/food';
 import { ActivatedRoute } from '@angular/router';
-import { FoodService } from '../services/food/food.service';
+import { FoodService } from 'src/app/services/food/food.service';
+import { Food } from 'src/app/shared/models/food';
+
 
 @Component({
   selector: 'app-food-page',
@@ -14,7 +15,9 @@ export class FoodPageComponent implements OnInit{
   constructor(private foodService:FoodService, private activatedRoute:ActivatedRoute){
     activatedRoute.params.subscribe((params)=>{
       if(params['id'])
-        this.food = foodService.getFoodById(params['id']);
+        foodService.getFoodById(params['id']).subscribe(serverFood =>{
+          this.food = serverFood;
+        });
         console.log(this.food)
     })
    }

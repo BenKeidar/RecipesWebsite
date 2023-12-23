@@ -16,6 +16,8 @@ export class TagsComponent implements OnInit{
   
   ngOnInit(): void{
     if(!this.foodPageTags)
-    this.tags = this.foodService.getAllTags();
+      this.foodService.getAllTags().subscribe(serverTags =>{
+        this.tags = serverTags;
+      });
   }
 }

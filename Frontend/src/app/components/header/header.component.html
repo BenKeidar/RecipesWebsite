@@ -3,17 +3,17 @@
         <a href="#" routerLink="/" class="logo">Recepies mine</a>
         <nav>
             <ul>
-                <li>
+                <li *ngIf="!isAuth">
                     <a href="#" routerLink="/Login">Login</a>
                 </li>
-                <li class="menu-container">
-                    <a href="#" routerLink="/Dash">Ben</a>
+                <li *ngIf="isAuth" class="menu-container">
+                    <a href="#" routerLink="/Dash">{{user.name}}</a>
                     <div class="menu">
                         <a routerLink="/profile">Profile</a>
-                        <a>Logout</a>
+                        <a (click)="logout()">Logout</a>
                     </div>
                 </li>
-                <li>
+                <li *ngIf="isAuth">
                     <a href="#" routerLink="/Upload">Upload</a>
                 </li>
             </ul>

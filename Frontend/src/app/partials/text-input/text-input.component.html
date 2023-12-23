@@ -1,0 +1,10 @@
+<input-container [label]="':'+label">
+    <input-validation 
+        [control]="control" [showErrorsWhen]="showErrorsWhen">
+    </input-validation>
+    <div>
+        <input [type]="type" [placeholder]="'הכנס ' + label" 
+        [formControl]="formControl"/>
+    </div>
+
+</input-container>

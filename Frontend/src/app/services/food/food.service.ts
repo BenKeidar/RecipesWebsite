@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { FOODS_BY_ID_URL, FOODS_BY_SEARCH_URL, FOODS_BY_TAG_URL, FOODS_TAGS_URL, FOODS_URL } from 'src/app/shared/constants/urls';
 import { Tag } from 'src/app/shared/models/Tag';
 import { Food } from 'src/app/shared/models/food';
 import { sample_foods } from 'src/data';
@@ -8,37 +11,34 @@ import { sample_foods } from 'src/data';
 })
 export class FoodService {
 
-  constructor() { }
+  //-----------------------------------Constructor--------------------------------------------
+  constructor(private http:HttpClient) { }
 
-  getAll():Food[]{
-    return sample_foods;
+  //-----------------------------------Get all recipes----------------------------------------
+  getAll():Observable<Food[]>{
+    return this.http.get<Food[]>(FOODS_URL);
   }
 
-  getFoodById(id: number):Food{
-    return this.getAll().find(food => food.id == id)!;
+  //-----------------------------------Get recipe by id---------------------------------------
+  getFoodById(id: number):Observable<Food>{
+    return this.http.get<Food>(FOODS_BY_ID_URL + id);
   }
 
-  getAllFoodsByTag(tag: string):Food[]{
+  //-----------------------------------Get recipes by tag-------------------------------------
+  getAllFoodsByTag(tag: string):Observable<Food[]>{
     if(tag == "All")
       return this.getAll();
     else
-      return this.getAll().filter(food => food.tags?.includes(tag))  
+      return this.http.get<Food[]>(FOODS_BY_TAG_URL + tag);
   }
 
-  getAllTags():Tag[]{
-    return[
-      { name: 'All', count: 14},
-      { name: 'FastFood', count: 4},
-      { name: 'Pizza', count: 2},
-      { name: 'Lunch', count: 3},
-      { name: 'SlowFood', count: 2},
-      { name: 'Hamburger', count: 1},
-      { name: 'Fry', count: 1},
-      { name: 'Soup', count: 1}
-    ]
+  //-----------------------------------Get all tags-------------------------------------------
+  getAllTags():Observable<Tag[]>{
+    return this.http.get<Tag[]>(FOODS_TAGS_URL);
   }
 
-  getAllFoodsBySearchTerm(searchTerm:string):Food[]{
-    return this.getAll().filter(food => food.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  //-----------------------------------Get recipe by searchTerm-------------------------------
+  getAllFoodsBySearchTerm(searchTerm:string):Observable<Food[]>{
+    return this.http.get<Food[]>(FOODS_BY_SEARCH_URL + searchTerm);
   }
 }
