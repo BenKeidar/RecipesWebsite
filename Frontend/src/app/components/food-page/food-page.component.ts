@@ -24,4 +24,24 @@ export class FoodPageComponent implements OnInit{
 
   ngOnInit(): void {
   }
+
+  checkIfEven(s:string): boolean{
+    if(this.food.doughIng?.indexOf(s) != null){
+      if(this.food.doughIng?.indexOf(s) %2 != 0){
+        return false;
+      }
+      return true;
+    }
+    return false;
+  }
+
+  checkIfEvenS(s:string): boolean{
+    if(this.food.sauceIng?.indexOf(s) != null){
+      if(this.food.sauceIng?.indexOf(s) %2 != 0){
+        return false;
+      }
+      return true;
+    }
+    return false;
+  }
 }

@@ -10,6 +10,7 @@ div a{
     margin: .2rem .15rem;
     border-radius: 10rem;
     font-weight: 600;
+    font-size: 1.2rem;
     color: #e72929;
     opacity: 0.8;
 }
@@ -20,4 +21,10 @@ div a:hover{
 
 .main{
     justify-content: center;
+}
+
+.fp{
+    justify-content: right;
+    align-items: right;
+    position:sticky;
 }

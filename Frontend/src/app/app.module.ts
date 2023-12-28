@@ -7,7 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TagsComponent } from './tags/tags.component';
+import { TagsComponent } from './partials/tags/tags.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { FoodPageComponent } from './components/food-page/food-page.component';
 import { UploadComponent } from './upload/upload.component';

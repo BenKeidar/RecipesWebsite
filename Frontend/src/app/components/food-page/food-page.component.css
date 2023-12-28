@@ -1,15 +1,16 @@
 img{
     border-radius: 3rem;
     flex: 1 0;
-    /*object-fit: cover;*/
+    object-fit: cover;
     height: 35rem;
-    margin: 1rem;
+    margin: 1rem; 
+    top: 0;
+    left: 0;
 }
 
 .container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display:flex;
+
     flex-wrap: wrap;
     margin: 3rem;
 }
@@ -30,14 +31,22 @@ img{
     margin-left: 1rem;
 }    
 
-.details .header{
-    display: flex;
-    justify-content: space-between;
+.details .header{    
+    display:inline;
+    word-wrap:break-word; 
+    width:inherit;  
+    justify-content: right;
+    align-items: right;
+    position:sticky;  
 }
 
 .details .name{
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: bold;
+    justify-content: right;
+    align-items: right;
+    position:sticky; 
+    text-align: right; 
 }
 
 .details .favorite{
@@ -53,33 +62,131 @@ img{
     display: flex;
     flex-wrap: wrap;
     margin: 1rem 0;
+    justify-content: right;
+    align-items: right;
+    position:sticky;
 }
 
 .details .origins > span{
     padding: .5rem;
     font-size: 1.2rem;
+    font-weight: 600;
     margin: .5rem .5rem .5rem 0;
     border-radius: 2rem;
     background-color: aliceblue;
 }
 
 .details .cook-time{
-    margin-top: 1rem;   
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    align-items: right;
+    position:sticky;
+    margin-top: 1rem;  
 }
 
 .details .cook-time span{
-    padding: .6rem 2rem .6rem 0;
+    padding: .6rem .6rem .6rem .6rem;
     border-radius: 10rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: aliceblue;
+    text-align: right;
 }
 
-.details .price{
-    font-size: 1rem;
-    margin: 2rem 2rem 2rem 0;
-    color: red;
+.details .link{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    align-items: right;
+    position:sticky;
+    margin-top: 1rem;  
 }
 
-.details .price::before{
-    content: "Price: ";
-    color: darkgray;
+.details .link a{
+    padding: .6rem .8rem .6rem .8rem;
+    border-radius: 10rem;
+    font-size: 1.2rem;
+
+    background-color: aliceblue;
+    text-align: right;
+    text-decoration: underline;
+    color: blue;
 }
+
+.details .ingredients{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    justify-content: right;
+    align-items: right;
+    direction: rtl;
+    list-style: none;
+}
+
+.details .ingredients .items li{
+    direction: rtl;
+    position:initial;
+    width:100%;
+    font-weight: 600;
+    /*background-color: azure;*/
+    text-align: right
+}
+
+li .even { 
+    background-color: #f0f0f0; 
+    padding: .4rem .8rem .4rem .6rem;
+    border-radius: 500px;
+    margin: 4px 0;
+}
+
+li .odd { 
+    background-color: #ea3c3c60; 
+    padding: .4rem .8rem .4rem .6rem;
+    border-radius: 500px;
+    margin: 4px 0;
+}
+
+.details .instruction{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    justify-content: right;
+    align-items: right;
+    direction: rtl;
+    list-style: none;
+}
+
+.details .instruction .items li span{
+    display: inline-block;
+    direction: rtl;
+    flex-wrap: wrap;
+    width:100%;
+    font-weight: 600;
+    position: sticky;
+    text-align: right
+}
+
+span .even { 
+    background-color: #f0f0f0; 
+    padding: .4rem .8rem .4rem .6rem;
+    border-radius: 30px;
+    margin: 4px 0;
+}
+
+span .odd { 
+    background-color: #ea3c3c60; 
+    padding: .4rem .8rem .4rem .6rem;
+    border-radius: 30px;
+    margin: 4px 0;
+}
+
+h1 {
+    color: #7d7d7d;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    position:sticky;
+    width: 100%;
+    font-size: 1.7rem;
+  }

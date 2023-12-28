@@ -4,15 +4,14 @@
     resetLinkText="Back to home page">
 </app-not-found>
 <div class="container" *ngIf="food">
+
     <img [src]="food.imageUrl" [alt]="food.name">
+
     <div class="details">
         <div class="header">
-            <span class="name">
+            <div class="name">
                 {{food.name}}
-            </span>
-            <span class="favorite {{food.favorite?'':'not'}}">
-                ❤
-            </span>
+            </div>
         </div>
         <div class="origins">
             <span *ngFor="let origin of food.origins">
@@ -23,10 +22,90 @@
             <app-tags [foodPageTags]="food.tags"></app-tags>
         </div>
         <div class="cook-time">
-            🕒Time to cook about <strong>{{food.cookTime}}</strong> minutes.
+            <span>
+                 זמן הכנה: {{food.cookTime}} דקות🕒
+            </span>
         </div>
-        <div class="price">
-            <span>{{food.price | currency}}</span>
+        <div class="link" *ngIf="food.link">
+            <a href="{{food.link}}" target="_blank">לחץ כאן לצפייה בסרטון</a>
+        </div>
+        <div class="ingredients">
+            <h1>מצרכים:</h1>
+            <div class="items">
+                <span *ngFor="let ingredient of food.ingredients">        
+                    <li *ngIf="food.ingredients.indexOf(ingredient) % 2 == 0">
+                       <div class="even">
+                            {{ingredient}}
+                       </div>
+                    </li> 
+                    <li *ngIf="food.ingredients.indexOf(ingredient) % 2 != 0">
+                        <div class="odd">
+                            {{ingredient}}
+                       </div>
+                    </li> 
+                </span>
+           </div> 
+        </div>
+        <div class="ingredients" *ngIf="food.doughIng?.length">
+            <h1>לבצק:</h1>
+            <div class="items">
+                <span *ngFor="let ingredient of food.doughIng">        
+                    <li *ngIf="food.doughIng?.indexOf(ingredient) != null">
+                       <div class="even" *ngIf="checkIfEven(ingredient)">
+                            {{ingredient}}
+                       </div>
+                    </li> 
+                    <li *ngIf="checkIfEven(ingredient)">
+                        <div class="odd">
+                            {{ingredient}}
+                       </div>
+                    </li> 
+                </span>
+           </div> 
+        </div>
+        <div class="ingredients" *ngIf="food.sauceIng?.length">
+            <h1>לרוטב:</h1>
+            <div class="items">
+                <span *ngFor="let ingredient of food.sauceIng">        
+                    <li *ngIf="checkIfEvenS(ingredient)">
+                       <div class="even">
+                            {{ingredient}}
+                       </div>
+                    </li> 
+                    <li *ngIf="checkIfEvenS(ingredient)">
+                        <div class="odd">
+                            {{ingredient}}
+                       </div>
+                    </li> 
+                </span>
+           </div> 
+        </div>
+        <div class="instruction">
+            <h1>הוראות הכנה:</h1>
+            <div class="items">
+                <span *ngFor="let instruction of food.instructions">
+                    <li *ngIf="food.instructions.indexOf(instruction) % 2 == 0">
+                        <div class="even">
+                            <span class="number">
+                                {{food.instructions.indexOf(instruction) +1}}.
+                           </span>
+                           <span class="text">
+                               {{instruction}}
+                           </span>
+                        </div>
+                     </li> 
+                     <li *ngIf="food.instructions.indexOf(instruction) % 2 != 0">
+                         <div class="odd">
+                            <span class="number">
+                                {{food.instructions.indexOf(instruction) +1}}.
+                           </span>
+                           <span class="text">
+                               {{instruction}}
+                           </span>
+                        </div>
+                     </li> 
+                </span>
+            </div>
         </div>
     </div>
 </div>

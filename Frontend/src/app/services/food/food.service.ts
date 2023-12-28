@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { FOODS_BY_ID_URL, FOODS_BY_SEARCH_URL, FOODS_BY_TAG_URL, FOODS_TAGS_URL, FOODS_URL } from 'src/app/shared/constants/urls';
 import { Tag } from 'src/app/shared/models/Tag';
 import { Food } from 'src/app/shared/models/food';
-import { sample_foods } from 'src/data';
+//import { sample_foods } from 'src/data';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class FoodService {
 
   //-----------------------------------Get recipes by tag-------------------------------------
   getAllFoodsByTag(tag: string):Observable<Food[]>{
-    if(tag == "All")
+    if(tag == "הכל")
       return this.getAll();
     else
       return this.http.get<Food[]>(FOODS_BY_TAG_URL + tag);
