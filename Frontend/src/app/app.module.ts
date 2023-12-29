@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TagsComponent } from './partials/tags/tags.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { FoodPageComponent } from './components/food-page/food-page.component';
-import { UploadComponent } from './upload/upload.component';
+import { UploadComponent } from './components/upload/upload.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { TitleComponent } from './partials/title/title.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -20,6 +20,7 @@ import { InputContainerComponent } from './partials/input-container/input-contai
 import { InputValidationComponent } from './partials/input-validation/input-validation.component';
 import { TextInputComponent } from './partials/text-input/text-input.component';
 import { DefaultButtonComponent } from './partials/default-button/default-button.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { DefaultButtonComponent } from './partials/default-button/default-button
     InputContainerComponent,
     InputValidationComponent,
     TextInputComponent,
-    DefaultButtonComponent
+    DefaultButtonComponent,
+    RegisterPageComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,8 +2,10 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { AbstractControl } from '@angular/forms';
 
 const VALIDATORS_MESSAGES:any ={
-  required:'This field is mandatory',
-  email:'Email is invalid'
+  required:'שדה זה הוא חובה',
+  email:'כתובת מייל לא חוקית',
+  minlength:'טקסט קצר מדי',
+  notMatch:'סיסמה ואימות הסיסמה לא תואמים'
 }
 
 @Component({

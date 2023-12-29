@@ -66,7 +66,7 @@ router.get("/tags", asynceHandler(
 
         tags.unshift(all);
         tags.reverse();
-        console.log(tags);
+        //console.log(tags);
         res.send(tags);
     })
 )

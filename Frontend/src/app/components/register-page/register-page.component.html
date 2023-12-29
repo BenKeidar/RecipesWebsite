@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="details">
+      <app-title title=":הירשם"></app-title>
+      <form [formGroup]="registerForm" (ngSubmit)="submit()">
+        <text-input
+            [control]="fc['name']"
+            [showErrorsWhen]="isSubmitted"
+            label="שם">
+        </text-input>
+  
+        <text-input
+            [control]="fc['email']"
+            [showErrorsWhen]="isSubmitted"
+            label="מייל"
+            type="email">
+        </text-input> 
+  
+        <text-input
+            [control]="fc['password']"
+            [showErrorsWhen]="isSubmitted"
+            label="סיסמה"
+            type="password">
+        </text-input>
+  
+        <text-input
+            [control]="fc['confirmPassword']"
+            [showErrorsWhen]="isSubmitted"
+            label="אימות סיסמה"
+            type="password">
+        </text-input>
+  
+        <text-input
+            [control]="fc['address']"
+            [showErrorsWhen]="isSubmitted"
+            label="כתובת">
+        </text-input>
+  
+  
+        <default-button text="Register"></default-button>
+  
+        <div class="login">
+            <a routerLink="/Login" [queryParams]="{returnUrl: returnUrl}">
+                התחבר
+            </a> 
+            &nbsp;?משתמש קיים 
+        </div>
+      </form>
+    </div>
+</div>
