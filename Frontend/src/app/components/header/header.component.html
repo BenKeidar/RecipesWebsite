@@ -4,17 +4,17 @@
         <nav>
             <ul>
                 <li *ngIf="!isAuth">
-                    <a href="#" routerLink="/Login">Login</a>
+                    <a href="#" routerLink="/Login">התחבר</a>
                 </li>
                 <li *ngIf="isAuth" class="menu-container">
                     <a href="#" routerLink="/Dash">{{user.name}}</a>
                     <div class="menu">
-                        <a routerLink="/profile">Profile</a>
-                        <a (click)="logout()">Logout</a>
+                        <a routerLink="/profile">פרופיל</a>
+                        <a (click)="logout()">התנתק</a>
                     </div>
                 </li>
                 <li *ngIf="isAuth">
-                    <a href="#" routerLink="/Upload">Upload</a>
+                    <a href="#" routerLink="/Upload">העלאה</a>
                 </li>
             </ul>
         </nav>

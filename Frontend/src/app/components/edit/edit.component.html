@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="details">
+      <app-title title=":עדכן"></app-title>
+      <form [formGroup]="uploadForm" (ngSubmit)="submit()">
+        <text-input
+            [control]="fc['name']"
+            [showErrorsWhen]="isSubmitted"
+            label="שם"> aa
+        </text-input>
+  
+        <text-input
+            [control]="fc['ingredients']"
+            [showErrorsWhen]="isSubmitted"
+            label="מצרכים">
+        </text-input> 
+  
+        <text-input
+            [control]="fc['doughIng']"
+            [showErrorsWhen]="isSubmitted"
+            label="מצרכים לבצק (אופציונלי)">
+        </text-input>
+
+        <text-input
+            [control]="fc['sauceIng']"
+            [showErrorsWhen]="isSubmitted"
+            label="מצרכים לרוטב (אופציונלי)">
+        </text-input>
+
+        <text-input
+            [control]="fc['tags']"
+            [showErrorsWhen]="isSubmitted"
+            label="תגיות">
+        </text-input> 
+  
+        <text-input
+            [control]="fc['instructions']"
+            [showErrorsWhen]="isSubmitted"
+            label="הוראות הכנה">
+        </text-input> 
+
+        <!--<text-input
+            [control]="fc['imageUrl']"
+            [showErrorsWhen]="isSubmitted"
+            label="תמונה">
+        </text-input>-->
+        <upload-img   
+            (change)="onFileChange($event)"      
+            [control]="fc['imageUrl']"
+            [showErrorsWhen]="isSubmitted"
+            label="תמונה חדשה">
+        </upload-img> 
+<!--
+        <input type="file" (change)="onFileChange($event)" />
+-->
+        <text-input
+            [control]="fc['origins']"
+            [showErrorsWhen]="isSubmitted"
+            label="מקורות">
+        </text-input> 
+
+        <text-input
+            [control]="fc['cookTime']"
+            [showErrorsWhen]="isSubmitted"
+            label="זמן הכנה">
+        </text-input> 
+
+        <text-input
+            [control]="fc['link']"
+            [showErrorsWhen]="isSubmitted"
+            label="קישור (אופציונלי)">
+        </text-input> 
+  
+        <default-button text="עדכן"></default-button>
+        <div class="gap">
+            &nbsp;
+        </div>
+      </form>
+    </div>
+</div>

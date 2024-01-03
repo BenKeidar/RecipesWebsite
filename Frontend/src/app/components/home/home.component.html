@@ -6,12 +6,12 @@
         <a routerLink="/food/{{food.id}}">
             <img src="{{food.imageUrl}}" alt=""> 
             <div class="content">
-                <div class="name">
-                    {{food.name | titlecase}}
-                </div>
                 <span class="favorite {{food.favorite?'':'not'}}">
                     ❤
                 </span>
+                <div class="name">
+                    {{food.name | titlecase}}
+                </div>
                 <div class="stars">
                    <img src="../../assets/images/stars.png" alt=""> 
                 </div>

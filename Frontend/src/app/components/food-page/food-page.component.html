@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <app-not-found 
     [visible]="!food" 
     notFoundMessage="Food Not Found"
@@ -12,6 +13,11 @@
             <div class="name">
                 {{food.name}}
             </div>
+            <span class="myBtns">
+                <button class="favorite {{food.favorite? '': 'not'}}" *ngIf="user.token"><i class="fa fa-heart"></i></button>
+                <button class="btn" *ngIf="user.isAdmin" routerLink="/edit"><i class="fa fa-edit"></i></button>
+                <button class="btn" *ngIf="user.isAdmin"><i class="fa fa-trash"></i></button>
+            </span>
         </div>
         <div class="origins">
             <span *ngFor="let origin of food.origins">
@@ -50,12 +56,12 @@
             <h1>לבצק:</h1>
             <div class="items">
                 <span *ngFor="let ingredient of food.doughIng">        
-                    <li *ngIf="food.doughIng?.indexOf(ingredient) != null">
+                    <li *ngIf="checkIfEven(ingredient)">
                        <div class="even" *ngIf="checkIfEven(ingredient)">
                             {{ingredient}}
                        </div>
                     </li> 
-                    <li *ngIf="checkIfEven(ingredient)">
+                    <li *ngIf="!checkIfEven(ingredient)">
                         <div class="odd">
                             {{ingredient}}
                        </div>
@@ -72,7 +78,7 @@
                             {{ingredient}}
                        </div>
                     </li> 
-                    <li *ngIf="checkIfEvenS(ingredient)">
+                    <li *ngIf="!checkIfEvenS(ingredient)">
                         <div class="odd">
                             {{ingredient}}
                        </div>
@@ -107,5 +113,10 @@
                 </span>
             </div>
         </div>
+        <!--
+        <div class="buttons">
+            <button class="btn" routerLink="/Upload"><i class="fa fa-edit"></i></button>
+            <button class="btn"><i class="fa fa-trash"></i></button>
+        </div>-->
     </div>
 </div>

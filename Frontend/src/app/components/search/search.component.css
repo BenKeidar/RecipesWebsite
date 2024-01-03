@@ -6,23 +6,24 @@ div{
 }
 
 div input{
-    border-radius: 10rem 0 0 10rem;
+    border-radius: 0 10rem 10rem 0;
     border: none;
     height: 3rem;
     width: 20rem;
     background-color: #f1f1f1;
     font-size: 1rem;
     padding: 1.2rem;
-    font-weight: 500;
     outline: none;
+    direction: rtl;
 }
 
 div button{
     color: white;
     height: 3rem;
     width: 5rem;
-    font-size: 1rem;
-    border-radius: 0 10rem 10rem 0;
+    font-size: 1.2rem;
+    font-weight: 300;
+    border-radius: 10rem 0 0 10rem;
     border: none;
     background-color: #e72929;
     opacity: 0.8;

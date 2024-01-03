@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FoodService } from 'src/app/services/food/food.service';
+import { UserServiceTsService } from 'src/app/services/user/user.service';
+import { User } from 'src/app/shared/models/User';
 import { Food } from 'src/app/shared/models/food';
-
 
 @Component({
   selector: 'app-food-page',
@@ -11,16 +12,28 @@ import { Food } from 'src/app/shared/models/food';
 })
 export class FoodPageComponent implements OnInit{
   
-  food!: Food;
-  constructor(private foodService:FoodService, private activatedRoute:ActivatedRoute){
+  food!:Food;
+  user!:User;
+  
+  constructor(
+    private foodService:FoodService, 
+    private activatedRoute:ActivatedRoute,
+    private userService:UserServiceTsService){
     activatedRoute.params.subscribe((params)=>{
       if(params['id'])
         foodService.getFoodById(params['id']).subscribe(serverFood =>{
           this.food = serverFood;
         });
-        console.log(this.food)
+        //console.log(this.food)
     })
-   }
+    userService.userObservable.subscribe((newUser) => {
+      this.user = newUser;
+   })
+
+   this.user = this.userService.currentUser;
+
+   this.food = this.foodService.currentFood;
+  }
 
   ngOnInit(): void {
   }
@@ -43,5 +56,9 @@ export class FoodPageComponent implements OnInit{
       return true;
     }
     return false;
+  }
+
+  get isAuth(){
+    return this.user.token;
   }
 }

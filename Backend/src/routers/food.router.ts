@@ -1,7 +1,8 @@
-import {Router} from 'express'
+import express, {Router} from 'express'
 import { sample_foods, sample_tags } from '../data';
 import asynceHandler from 'express-async-handler';
-import { FoodModel } from '../models/food.model';
+import { Food, FoodModel } from '../models/food.model';
+import { HTTP_BAD_REQUEST } from '../constants/http_status';
 
 const router = Router();
 
@@ -86,5 +87,75 @@ router.get("/:foodId", asynceHandler(
         res.send(food);
     })
 )
+
+//===================================Post-APIs==============================================
+  //---------------------------------Upload-------------------------------------------------
+  router.post('/Upload', asynceHandler(
+    async (req,res) =>{
+      const {id, name, ingredients, doughIng, sauceIng, tags, instructions, imageUrl, origins, cookTime, link} = req.body;
+      
+      //Check if recipe already exists
+      const user = await FoodModel.findOne({name});
+      
+      if(user){//if recipe exists
+        res.status(HTTP_BAD_REQUEST).send('User already exists, please login');
+        return;
+      }
+
+      //Create new recipe
+      const newFood:Food = {
+        id:'',
+        name,
+        ingredients,
+        doughIng,
+        sauceIng,
+        tags,
+        favorite: false,
+        instructions,
+        imageUrl,
+        origins,
+        cookTime,
+        link
+      }
+
+      //Save new recipe into DB
+      const dbFood = await FoodModel.create(newFood);
+      res.send(dbFood);
+    }
+  ))
+
+//---------------------------------Upload-------------------------------------------------
+router.post('/Edit', asynceHandler(
+    async (req,res) =>{
+        const {id, name, ingredients, doughIng, sauceIng, tags, instructions, imageUrl, origins, cookTime, link} = req.body;
+
+        console.log("888888888888888");
+
+        //Create new recipe
+        const newFood:Food = {
+        id:'',
+        name,
+        ingredients,
+        doughIng,
+        sauceIng,
+        tags,
+        favorite: false,
+        instructions,
+        imageUrl,
+        origins,
+        cookTime,
+        link
+        }
+
+        //Update recipe into DB
+        const dbFood = await FoodModel.findByIdAndUpdate(id,
+        {$set:{
+            name: newFood.name,
+            ingredients: newFood.ingredients,
+        }});
+
+        res.send(dbFood);
+    }
+))
 
 export default router;

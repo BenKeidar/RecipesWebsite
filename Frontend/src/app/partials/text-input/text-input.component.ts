@@ -16,6 +16,7 @@ export class TextInputComponent implements OnInit{
   @Input()
   type: 'text'|'password'|'email' = 'text';
 
+
   get formControl(){
     return this.control as FormControl;
   }

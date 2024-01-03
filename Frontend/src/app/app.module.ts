@@ -21,6 +21,8 @@ import { InputValidationComponent } from './partials/input-validation/input-vali
 import { TextInputComponent } from './partials/text-input/text-input.component';
 import { DefaultButtonComponent } from './partials/default-button/default-button.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { UploadImgComponent } from './partials/upload-img/upload-img.component';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   imports: [
@@ -51,7 +53,9 @@ import { RegisterPageComponent } from './components/register-page/register-page.
     InputValidationComponent,
     TextInputComponent,
     DefaultButtonComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    UploadImgComponent,
+    EditComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -112,7 +112,7 @@ export const sample_tags:any[] = [
 
 export const sample_users:any[] = [
   { 
-    name: "Ben Keidar", 
+    name: "בן קידר", 
     email: "benkeidar123@gmail.com",
     password: "123456",
     address: "Jerusalem",

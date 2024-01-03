@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
-
+import bodyParser from 'body-parser';
 import express from "express";
 import cors from "cors";
 import foodRouter from './routers/food.router';
@@ -16,6 +16,15 @@ app.use(cors({
     origin:["http://localhost:4200"]
 }))
 
+app.use(bodyParser.json({limit: '1175mb'}));
+
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+    limit: '1175mb',
+    parameterLimit: 50000000,
+  }),
+);
 
 app.use("/api/foods", foodRouter);
 app.use("/api/users", userRouter);
