@@ -1,12 +1,13 @@
 header{
-    background: white;
+    background: #f55656;
     padding: 0;
     border-bottom: 1px solid #e72929;
     position: relative;
+    opacity: 0.8;
 }
 
 a{
-    color: #af1313;
+    color: white;
 }
 
 a:hover{
@@ -20,7 +21,7 @@ a:hover{
     justify-content:space-between;
     font-size: 1.2;
     font-weight: 600;
-    direction: rtl;
+    
 }
 
 a.logo{
@@ -58,4 +59,19 @@ nav ul li a{
     width: 100%;
     min-width: 8rem;
 
+}
+
+button{
+    background-color: #f55656; /* Blue background */
+    border: none; /* Remove borders */
+    color: whitesmoke; /* White text */
+    padding: 18px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+    /*margin-left: 0.2rem;*/
+    height: 100%;
+}
+
+button:hover{
+    background-color: rgb(227, 9, 9);
 }

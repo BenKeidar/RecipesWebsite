@@ -20,8 +20,12 @@ ul li a{
 }
 
 img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width:auto;
     height: 15rem;
+    margin-top: 1rem;
 }
 
 div img{

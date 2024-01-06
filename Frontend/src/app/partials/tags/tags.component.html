@@ -1,10 +1,14 @@
-<div class="main" *ngIf="tags">
+<div class="main" *ngIf="tags && !foodPageTags">
     <a *ngFor="let tag of tags" routerLink="/tag/{{tag.name}}">
-        {{tag.name}}({{tag.count}})
+        <span *ngIf="tag.count > 0">
+            ({{tag.count}}){{tag.name}} 
+        </span>
     </a>
 </div>
 <div class="fp" *ngIf="foodPageTags">
     <a *ngFor="let tagName of foodPageTags" routerLink="/tag/{{tagName}}">
-        {{tagName}}
+        <span>
+            {{tagName}}   
+        </span>
     </a>
 </div>

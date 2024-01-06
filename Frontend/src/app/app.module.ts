@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -23,7 +23,10 @@ import { DefaultButtonComponent } from './partials/default-button/default-button
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { UploadImgComponent } from './partials/upload-img/upload-img.component';
 import { EditComponent } from './components/edit/edit.component';
-
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import {MatDialogModule } from '@angular/material/dialog';
+import { LoadingComponent } from './partials/loading/loading.component';
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor.spec';
 @NgModule({
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { EditComponent } from './components/edit/edit.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       timeOut:3000,
       positionClass:'toast-bottom-right',
@@ -55,9 +59,13 @@ import { EditComponent } from './components/edit/edit.component';
     DefaultButtonComponent,
     RegisterPageComponent,
     UploadImgComponent,
-    EditComponent
+    EditComponent,
+    DeleteDialogComponent,
+    LoadingComponent
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

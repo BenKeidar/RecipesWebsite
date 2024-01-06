@@ -6,7 +6,7 @@
 </app-not-found>
 <div class="container" *ngIf="food">
 
-    <img [src]="food.imageUrl" [alt]="food.name">
+    <img [src]="getImg()" [alt]="food.name">
 
     <div class="details">
         <div class="header">
@@ -14,9 +14,9 @@
                 {{food.name}}
             </div>
             <span class="myBtns">
-                <button class="favorite {{food.favorite? '': 'not'}}" *ngIf="user.token"><i class="fa fa-heart"></i></button>
+                <button (click)="setFav()" class="favorite {{food.favorite? '': 'not'}}" *ngIf="user.token" ><i class="fa fa-heart"></i></button>
                 <button class="btn" *ngIf="user.isAdmin" routerLink="/edit"><i class="fa fa-edit"></i></button>
-                <button class="btn" *ngIf="user.isAdmin"><i class="fa fa-trash"></i></button>
+                <button class="btn" *ngIf="user.isAdmin" routerLink="/delete/{{food.id}}"><i class="fa fa-trash"></i></button>
             </span>
         </div>
         <div class="origins">

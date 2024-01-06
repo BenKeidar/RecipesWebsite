@@ -1,8 +1,8 @@
 div{
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
     margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 div input{
@@ -25,7 +25,7 @@ div button{
     font-weight: 300;
     border-radius: 10rem 0 0 10rem;
     border: none;
-    background-color: #e72929;
+    background-color: #f55656;
     opacity: 0.8;
     outline: none;
 }

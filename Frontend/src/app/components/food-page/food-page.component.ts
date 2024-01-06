@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FoodService } from 'src/app/services/food/food.service';
 import { UserServiceTsService } from 'src/app/services/user/user.service';
+import { IFoodPart } from 'src/app/shared/interfaces/IFoodPart';
+import { IFoodUpload } from 'src/app/shared/interfaces/IFoodUpload';
 import { User } from 'src/app/shared/models/User';
 import { Food } from 'src/app/shared/models/food';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-food-page',
@@ -18,7 +22,9 @@ export class FoodPageComponent implements OnInit{
   constructor(
     private foodService:FoodService, 
     private activatedRoute:ActivatedRoute,
-    private userService:UserServiceTsService){
+    private userService:UserServiceTsService,
+    private router: Router,
+    public dialog:MatDialog){
     activatedRoute.params.subscribe((params)=>{
       if(params['id'])
         foodService.getFoodById(params['id']).subscribe(serverFood =>{
@@ -29,7 +35,7 @@ export class FoodPageComponent implements OnInit{
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
    })
-
+   this.userService.setCurrentUrl(this.router.url);
    this.user = this.userService.currentUser;
 
    this.food = this.foodService.currentFood;
@@ -60,5 +66,25 @@ export class FoodPageComponent implements OnInit{
 
   get isAuth(){
     return this.user.token;
+  }
+
+  setFav(){
+    //this.food.favorite = !this.food.favorite;
+
+    const recipe :IFoodPart = {
+      id: this.food.id,
+      name: this.food.name,
+      favorite: !this.food.favorite
+    };
+
+
+
+    this.foodService.changeFavorite(recipe).subscribe(_ => {
+      this.food.favorite = recipe.favorite;
+    })
+  }    
+
+  getImg(){
+    return atob(this.food.imageUrl)
   }
 }

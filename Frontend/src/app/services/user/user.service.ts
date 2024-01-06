@@ -9,12 +9,14 @@ import { User } from 'src/app/shared/models/User';
 
 const USER_KEY = 'User';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceTsService {
   private userSubject = new BehaviorSubject<User>(this.getUserFromLocalStorage());
   public userObservable:Observable<User>;
+  PREV_URL = '';
   constructor(private http:HttpClient, private toastrService:ToastrService) {
     this.userObservable = this.userSubject.asObservable();
   }
@@ -75,5 +77,13 @@ export class UserServiceTsService {
     const userJson = localStorage.getItem(USER_KEY);
     if(userJson) return JSON.parse(userJson) as User;
     return new User();
+  }
+
+  public setCurrentUrl(url:string){
+    this.PREV_URL = url;
+  }
+
+  public getPrevUrl():string{
+    return this.PREV_URL;
   }
 }

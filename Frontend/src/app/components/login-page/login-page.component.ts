@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit{
       password:['', Validators.required]
     })
 
-    this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'];
+    this.returnUrl = this.userService.getPrevUrl();
   }
        
   get fc(){

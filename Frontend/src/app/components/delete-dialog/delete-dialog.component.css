@@ -17,16 +17,6 @@ form{
     justify-content: center;
 }
 
-.login{
-    display: flex;
-    justify-content: right;
-    margin-top: .3rem;
-}
-
-.login a{
-    color: blue;
-}
-
 button{
     background-color: rgb(130, 190, 250); /* Blue background */
     border: none; /* Remove borders */
@@ -36,4 +26,8 @@ button{
     cursor: pointer; /* Mouse pointer on hover */
     border-radius: 10rem;
     margin-left: 0.2rem;
+}
+
+default-button button{
+    background-color: aqua;
 }

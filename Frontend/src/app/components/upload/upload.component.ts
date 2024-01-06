@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FoodService } from 'src/app/services/food/food.service';
+import { UserServiceTsService } from 'src/app/services/user/user.service';
 import { IFoodUpload } from 'src/app/shared/interfaces/IFoodUpload';
 
 @Component({
@@ -23,6 +24,7 @@ export class UploadComponent implements OnInit{
     private foodService: FoodService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private userService:UserServiceTsService
     ){ } 
 
     ngOnInit(): void {
@@ -39,7 +41,7 @@ export class UploadComponent implements OnInit{
         link: ['', ]
       });
   
-      this.returnUrl= this.activatedRoute.snapshot.queryParams['returnUrl'];
+      this.returnUrl = this.userService.getPrevUrl();
     }
 
     onFileChange(event: any) {
@@ -59,8 +61,8 @@ export class UploadComponent implements OnInit{
       const reader = new FileReader();  
       reader.readAsDataURL(this.file);  
       reader.onload = () => {   
-        this.base64String = reader.result as string;   
-        this.base64Image = reader.result as string;    
+        this.base64String = btoa(reader.result as string);   
+        this.base64Image = btoa(reader.result as string);    
       }
     }
     
@@ -70,11 +72,11 @@ export class UploadComponent implements OnInit{
   
       const fv= this.uploadForm.value;
 
-      var d = [''];
+      var d = undefined;
       if(fv.doughIng.includes(","))
         d = fv.doughIng.split(",");
 
-      var s = [''];
+      var s = undefined;
       if(fv.sauceIng.includes(","))
         s = fv.sauceIng.split(",");
 

@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { FOODS_BY_ID_URL, FOODS_BY_SEARCH_URL, FOODS_BY_TAG_URL, FOODS_TAGS_URL, FOODS_URL, UPDATE_FOODS_URL, UPLOAD_FOODS_URL } from 'src/app/shared/constants/urls';
+import { FOODS_BY_ID_URL, FOODS_BY_SEARCH_URL, FOODS_BY_TAG_URL, FOODS_FAVORITES_URL, FOODS_TAGS_URL, FOODS_URL, UPDATE_DELETE_URL, UPDATE_FAVORITE_URL, UPDATE_FOODS_URL, UPLOAD_FOODS_URL } from 'src/app/shared/constants/urls';
+import { IFoodPart } from 'src/app/shared/interfaces/IFoodPart';
 import { IFoodUpload } from 'src/app/shared/interfaces/IFoodUpload';
 import { Tag } from 'src/app/shared/models/Tag';
 import { Food } from 'src/app/shared/models/food';
@@ -29,6 +30,11 @@ export class FoodService {
     return this.http.get<Food[]>(FOODS_URL);
   }
 
+  //-----------------------------------Get all recipes----------------------------------------
+  getFaveoriteRecipes():Observable<Food[]>{
+    return this.http.get<Food[]>(FOODS_FAVORITES_URL);
+  }
+
   //-----------------------------------Get recipe by id---------------------------------------
   getFoodById(id: number):Observable<Food>{
     return this.http.get<Food>(FOODS_BY_ID_URL + id).pipe(
@@ -39,7 +45,7 @@ export class FoodService {
         },
         error: (errorResponse) => {
           this.toastrService.error(errorResponse.error,
-            'Failed to display')
+            'לא הצלחנו להציג')
         }
       })
     )
@@ -49,6 +55,8 @@ export class FoodService {
   getAllFoodsByTag(tag: string):Observable<Food[]>{
     if(tag == "הכל")
       return this.getAll();
+    else if(tag == "❤")
+      return this.getFaveoriteRecipes();
     else
       return this.http.get<Food[]>(FOODS_BY_TAG_URL + tag);
   }
@@ -69,33 +77,67 @@ export class FoodService {
       tap({
         next: (food) => {
           this.toastrService.success(
-            `${food.name} Uploaded successfully`
+            ` הועלה בהצלחה - ${food.name}`
           )
         },
         error: (errorResponse) => {
           this.toastrService.error(errorResponse.error,
-            'Upload Failed')
+            'העלאה נכשלה')
         }
       })
     )
   }
 
-    //-----------------------------------Update a repipe--------------------------------------
-    update(foodUpload:IFoodUpload): Observable<Food>{
-      return this.http.post<Food>(UPDATE_FOODS_URL, foodUpload).pipe(
-        tap({
-          next: (food) => {
-            this.toastrService.success(
-              `${food.name} Updated successfully`
-            )
-          },
-          error: (errorResponse) => {
-            this.toastrService.error(errorResponse.error,
-              'Update Failed')
-          }
-        })
-      )
-    }
+  //-----------------------------------Update a repipe--------------------------------------
+  update(foodUpload:IFoodUpload): Observable<Food>{
+    return this.http.post<Food>(UPDATE_FOODS_URL, foodUpload).pipe(
+      tap({
+        next: (food) => {
+          this.toastrService.success(
+            ` עודכן בהצלחה - ${food.name}`
+          )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error,
+            'העדכון נכשל')
+        }
+      })
+    )
+  }
+
+  //-----------------------------------Update a repipe--------------------------------------
+  changeFavorite(foodUpload:IFoodPart): Observable<Food>{
+    return this.http.post<Food>(UPDATE_FAVORITE_URL, foodUpload).pipe(
+      tap({
+        next: (food) => {
+          this.toastrService.success(
+            ` עודכן בהצלחה - ${food.name}`
+          )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error,
+            'העדכון נכשל')
+        }
+      })
+    )
+  }
+
+  //-----------------------------------Delete a repipe--------------------------------------
+  deleteRecipe(foodUpload:IFoodPart): Observable<Food>{
+    return this.http.post<Food>(UPDATE_DELETE_URL, foodUpload).pipe(
+      tap({
+        next: (food) => {
+          this.toastrService.success(
+            ` נמחק בהצלחה - ${food.name}` 
+          )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error,
+            'המחיקה נכשלה')
+        }
+      })
+    )
+  }
   
   //-----------------------------------Functions-----------------------------------------------
   public setFoodToLocalStorage(food:Food){

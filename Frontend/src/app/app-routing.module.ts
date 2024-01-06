@@ -7,12 +7,15 @@ import { UploadComponent } from './components/upload/upload.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { EditComponent } from './components/edit/edit.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 
 const routes: Routes = [
   {path:'',component: HomeComponent},
   {path:'search/:searchTerm', component:HomeComponent},
   {path:'tag/:tag', component:HomeComponent},
   {path:'food/:id', component:FoodPageComponent},
+  {path:'delete/:id', component:DeleteDialogComponent},
   {path:'Upload', component:UploadComponent},
   {path:'Login', component:LoginPageComponent},
   {path:'register', component:RegisterPageComponent},
@@ -20,7 +23,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), CommonModule],
+  imports: [RouterModule.forRoot(routes), CommonModule, MatDialogModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

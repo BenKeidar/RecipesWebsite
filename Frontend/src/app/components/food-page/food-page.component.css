@@ -196,7 +196,7 @@ span .odd {
 
 .favorite{
     color: #e72929;
-    background-color: lightgray;
+    background-color: rgb(198, 243, 243);
 }
 
 .favorite.not{

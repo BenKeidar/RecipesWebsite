@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RoutesRecognized } from '@angular/router';
+import { filter, pairwise } from 'rxjs';
 import { FoodService } from 'src/app/services/food/food.service';
+import { UserServiceTsService } from 'src/app/services/user/user.service';
 import { IFoodUpload } from 'src/app/shared/interfaces/IFoodUpload';
 import { Food } from 'src/app/shared/models/food';
 
@@ -24,6 +26,7 @@ export class EditComponent  implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private foodService: FoodService,
+    private userService: UserServiceTsService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     ){
@@ -50,9 +53,9 @@ export class EditComponent  implements OnInit{
         link: ['', ]
       });
 
-      console.log(this.food.ingredients);
+      //console.log(this.food.ingredients);
 
-      //this.base64String = this.food.imageUrl;
+      this.base64String = this.food.imageUrl;
 
       this.uploadForm.setValue({
         name: this.food.name,
@@ -66,10 +69,14 @@ export class EditComponent  implements OnInit{
         cookTime: this.food.cookTime,
         link: this.food.link
       });
+
+      this.returnUrl = this.userService.getPrevUrl();
     } 
 
   ngOnInit(): void {
-    this.returnUrl= this.activatedRoute.snapshot.queryParams['returnUrl'];
+    //this.returnUrl= this.router.url;
+    //console.log(this.router.getCurrentNavigation()?.previousNavigation?.extractedUrl);
+    //this.returnUrl= this.activatedRoute.snapshot.queryParams['redirectTo'];
   }
 
   onFileChange(event: any) {
@@ -90,8 +97,8 @@ export class EditComponent  implements OnInit{
     const reader = new FileReader();  
     reader.readAsDataURL(this.file);  
     reader.onload = () => {   
-      this.base64String = reader.result as string;   
-      this.base64Image = reader.result as string;    
+      this.base64String = btoa(reader.result as string);   
+      this.base64Image = btoa(reader.result as string);    
     }
   }
   
@@ -105,12 +112,20 @@ export class EditComponent  implements OnInit{
     if(this.isImgChanged)
       img = this.base64String;
 
+    var d = undefined;
+    if(fv.doughIng.includes(","))
+      d = fv.doughIng.split(",");
+
+    var s = undefined;
+    if(fv.sauceIng.includes(","))
+      s = fv.sauceIng.split(",");
+
     const recipe :IFoodUpload = {
       id: this.food.id,
       name: fv.name,
       ingredients: fv.ingredients.split(","),
-      doughIng: fv.doughIng.split(","),
-      sauceIng: fv.sauceIng.split(","),
+      doughIng: d,
+      sauceIng: s,
       tags: fv.tags.split(","),
       instructions: fv.instructions.split(","),
       imageUrl: img,

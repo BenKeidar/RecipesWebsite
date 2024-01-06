@@ -1,21 +1,29 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <header>
     <div class="container">
-        <a href="#" routerLink="/" class="logo">Recepies mine</a>
+        <button class="btn" routerLink="/"><i class="fa fa-home"></i></button>
+        <!--<a href="#" routerLink="/" class="logo">Recepies mine</a>-->
         <nav>
             <ul>
                 <li *ngIf="!isAuth">
-                    <a href="#" routerLink="/Login">התחבר</a>
+                    <button class="btn" routerLink="/Login"><i class="fa fa-user-circle"></i></button>
+                    <!--<a href="#" routerLink="/Login">התחבר</a>-->
                 </li>
                 <li *ngIf="isAuth" class="menu-container">
-                    <a href="#" routerLink="/Dash">{{user.name}}</a>
-                    <div class="menu">
-                        <a routerLink="/profile">פרופיל</a>
-                        <a (click)="logout()">התנתק</a>
+                    <a href="#">{{user.name}}</a>
+                    <div class="menu2">
+                        
                     </div>
-                </li>
+                </li> 
                 <li *ngIf="isAuth">
-                    <a href="#" routerLink="/Upload">העלאה</a>
+                    <button class="btn" routerLink="/Upload"><i class="fa fa-upload"></i></button>
+                    <!--<a href="#" routerLink="/Upload">העלאה</a>-->
                 </li>
+                <li *ngIf="isAuth" class="menu-container">
+                    <button (click)="logout()" class="btn"><i class="fa fa-sign-out"></i></button>
+                    <!--<a (click)="logout()">התנתק</a>-->
+                </li>
+
             </ul>
         </nav>
     </div>
