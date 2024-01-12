@@ -4,6 +4,7 @@ export class Food{
     ingredients!:string[];
     doughIng?:string[];
     sauceIng?:string[];
+    stuffingIng?:string[];
     tags?:string[];
     favorite:boolean = false;
     instructions!:string[];

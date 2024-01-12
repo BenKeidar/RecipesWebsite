@@ -6,6 +6,7 @@ import { Schema, model } from "mongoose";
     ingredients:string[];
     doughIng:string[];
     sauceIng:string[];
+    stuffingIng:string[];
     tags:string[];
     favorite:boolean;
     instructions:string[];
@@ -21,6 +22,7 @@ import { Schema, model } from "mongoose";
         ingredients: {type: [String], required:true},
         doughIng: {type: [String], required:true},
         sauceIng: {type: [String], required:true},
+        stuffingIng: {type: [String], required:true},
         tags: {type: [String]},
         favorite: {type: Boolean, default:false},
         instructions: {type: [String], required:true},

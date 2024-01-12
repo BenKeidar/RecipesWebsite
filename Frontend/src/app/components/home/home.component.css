@@ -20,17 +20,19 @@ ul li a{
 }
 
 img{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width:auto;
-    height: 15rem;
-    margin-top: 1rem;
+    object-fit: cover;
+    height: 14.5rem;
 }
 
 div img{
     height: 1rem;
     width: 5rem;
+}
+
+.logo img{
+    height: 10rem;
+    width: 25rem;
+    border-radius: 1.5rem;
 }
 
 li a:hover{
@@ -84,4 +86,8 @@ li a:hover{
 .price{
     color:#414141;
     margin-top: .7rem;
+}
+
+.name{
+    direction: rtl;
 }

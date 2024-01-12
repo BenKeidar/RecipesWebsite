@@ -1,6 +1,8 @@
 <ul>
     <li>
-        <img src="../../assets/images/BAlogo.png" alt="">
+        <div class="logo">
+            <img src="../../assets/images/BAlogo.png" alt="">
+        </div>
     </li>
 </ul>
 <app-search></app-search>
@@ -9,7 +11,7 @@
 <ul>
     <li *ngFor="let food of foods">
         <a routerLink="/food/{{food.id}}">
-            <img [src]="getImg(food.imageUrl)" alt=""> 
+            <img class="foodPic" [src]="getImg(food.imageUrl)" alt=""> 
             <div class="content">
                 <div class="name">
                     {{food.name | titlecase}}

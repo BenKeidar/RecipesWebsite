@@ -33,6 +33,7 @@ export class UploadComponent implements OnInit{
         ingredients: [[''], [Validators.required]],
         doughIng: [[''], ],
         sauceIng: [[''], ],
+        stuffingIng: [[''], ],
         tags: [[], [Validators.required]],
         instructions: [[], [Validators.required]],
         imageUrl: ['', [Validators.required]],
@@ -76,16 +77,21 @@ export class UploadComponent implements OnInit{
       if(fv.doughIng.includes(","))
         d = fv.doughIng.split(",");
 
-      var s = undefined;
+      var sa = undefined;
       if(fv.sauceIng.includes(","))
-        s = fv.sauceIng.split(",");
+        sa = fv.sauceIng.split(",");
+
+      var st = undefined;
+      if(fv.stuffingIng.includes(","))
+        st = fv.stuffingIng.split(",");
 
       const recipe :IFoodUpload = {
         id:1,
         name: fv.name,
         ingredients: fv.ingredients.split(","),
         doughIng: d,
-        sauceIng: fv.s,
+        sauceIng: sa,
+        stuffingIng: st,
         tags: fv.tags.split(","),
         instructions: fv.instructions.split(","),
         imageUrl: this.base64String,

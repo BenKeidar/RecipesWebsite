@@ -11,11 +11,18 @@ const router = Router();
 router.get("/seed", asynceHandler(
     async (req, res) =>{
         const foodsCount = await FoodModel.countDocuments();
-        if(foodsCount > 0){
-            res.send("Seed already done");
-            return;
-        }
-        await FoodModel.create(sample_foods);
+        // if(foodsCount > 0){
+        //     res.send("Seed already done");
+        //     return;
+        // }
+        //await FoodModel.create(sample_foods);
+        await FoodModel.aggregate([
+            {
+                $addFields: {
+                    "stuffingIng": []
+                }
+            }
+        ]);
         res.send("Seed done");
 
     }
@@ -106,13 +113,13 @@ router.get("/:foodId", asynceHandler(
 //---------------------------------Upload---------------------------------------------------
 router.post('/Upload', asynceHandler(
 async (req,res) =>{
-    const {id, name, ingredients, doughIng, sauceIng, tags, instructions, imageUrl, origins, cookTime, link} = req.body;
+    const {id, name, ingredients, doughIng, sauceIng, stuffingIng, tags, instructions, imageUrl, origins, cookTime, link} = req.body;
     
     //Check if recipe already exists
     const user = await FoodModel.findOne({name});
     
     if(user){//if recipe exists
-    res.status(HTTP_BAD_REQUEST).send('User already exists, please login');
+    res.status(HTTP_BAD_REQUEST).send('מתכון בשם זה כבר קיים');
     return;
     }
 
@@ -123,6 +130,7 @@ async (req,res) =>{
     ingredients,
     doughIng,
     sauceIng,
+    stuffingIng,
     tags,
     favorite: false,
     instructions,
@@ -141,7 +149,7 @@ async (req,res) =>{
 //---------------------------------Edit-----------------------------------------------------
 router.post('/Edit', asynceHandler(
     async (req,res) =>{
-        const {id, name, ingredients, doughIng, sauceIng, tags, instructions, imageUrl, origins, cookTime, link} = req.body;
+        const {id, name, ingredients, doughIng, sauceIng, stuffingIng, tags, instructions, imageUrl, origins, cookTime, link} = req.body;
 
         console.log("888888888888888");
 
@@ -152,6 +160,7 @@ router.post('/Edit', asynceHandler(
         ingredients,
         doughIng,
         sauceIng,
+        stuffingIng,
         tags,
         favorite: false,
         instructions,
@@ -192,6 +201,7 @@ router.post('/Favorite', asynceHandler(
         ingredients: [''],
         doughIng: [''],
         sauceIng: [''],
+        stuffingIng: [''],
         tags: [''],
         favorite,
         instructions: [''],
@@ -211,7 +221,7 @@ router.post('/Favorite', asynceHandler(
     }
 ))
 
-//---------------------------------Favorite-------------------------------------------------
+//---------------------------------Delete---------------------------------------------------
 router.post('/Delete', asynceHandler(
     async (req,res) =>{
         const {id, name, favorite} = req.body;
@@ -223,6 +233,7 @@ router.post('/Delete', asynceHandler(
         ingredients: [''],
         doughIng: [''],
         sauceIng: [''],
+        stuffingIng: [''],
         tags: [''],
         favorite,
         instructions: [''],

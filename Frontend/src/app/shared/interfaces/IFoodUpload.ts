@@ -4,6 +4,7 @@ export interface IFoodUpload{
     ingredients:string[];
     doughIng:string[];
     sauceIng:string[];
+    stuffingIng:string[];
     tags:string[];
     //favorite:boolean;
     instructions:string[];

@@ -35,7 +35,7 @@ router.post("/login", asyncHandler(
         res.send(generateTokenReponse(user));
        }
        else{
-         res.status(HTTP_BAD_REQUEST).send("Username or password is invalid!");
+         res.status(HTTP_BAD_REQUEST).send("שם או סיסמה אינם נכונים!");
        }
     }
   ))
@@ -49,7 +49,7 @@ router.post("/login", asyncHandler(
       const user = await UserModel.findOne({email});
       
       if(user){//if user exists
-        res.status(HTTP_BAD_REQUEST).send('User already exists, please login');
+        res.status(HTTP_BAD_REQUEST).send('משתמש כבר קיים');
         return;
       }
 

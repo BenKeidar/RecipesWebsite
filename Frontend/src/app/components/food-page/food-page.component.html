@@ -86,6 +86,23 @@
                 </span>
            </div> 
         </div>
+        <div class="ingredients" *ngIf="food.sauceIng?.length">
+            <h1>למילוי:</h1>
+            <div class="items">
+                <span *ngFor="let ingredient of food.stuffingIng">        
+                    <li *ngIf="checkIfEvenS(ingredient)">
+                       <div class="even">
+                            {{ingredient}}
+                       </div>
+                    </li> 
+                    <li *ngIf="!checkIfEvenS(ingredient)">
+                        <div class="odd">
+                            {{ingredient}}
+                       </div>
+                    </li> 
+                </span>
+           </div> 
+        </div>
         <div class="instruction">
             <h1>הוראות הכנה:</h1>
             <div class="items">

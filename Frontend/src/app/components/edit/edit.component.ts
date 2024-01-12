@@ -45,6 +45,7 @@ export class EditComponent  implements OnInit{
         ingredients: [[''], [Validators.required]],
         doughIng: [[''], ],
         sauceIng: [[''], ],
+        stuffingIng: [[''], ],
         tags: [[], [Validators.required]],
         instructions: [[], [Validators.required]],
         imageUrl: ['', [Validators.required]],
@@ -62,6 +63,7 @@ export class EditComponent  implements OnInit{
         ingredients: this.food.ingredients.toString(),
         doughIng: this.food.doughIng?.toString(),
         sauceIng: this.food.sauceIng?.toString(),
+        stuffingIng: this.food.stuffingIng?.toString(),
         tags: this.food.tags?.toString(),
         instructions: this.food.instructions.toString(),
         imageUrl: this.base64String,
@@ -116,16 +118,21 @@ export class EditComponent  implements OnInit{
     if(fv.doughIng.includes(","))
       d = fv.doughIng.split(",");
 
-    var s = undefined;
+    var sa = undefined;
     if(fv.sauceIng.includes(","))
-      s = fv.sauceIng.split(",");
+      sa = fv.sauceIng.split(",");
+
+    var st = undefined;
+    if(fv.stuffingIng.includes(","))
+      st = fv.stuffingIng.split(",");
 
     const recipe :IFoodUpload = {
       id: this.food.id,
       name: fv.name,
       ingredients: fv.ingredients.split(","),
       doughIng: d,
-      sauceIng: s,
+      sauceIng: sa,
+      stuffingIng: st,
       tags: fv.tags.split(","),
       instructions: fv.instructions.split(","),
       imageUrl: img,

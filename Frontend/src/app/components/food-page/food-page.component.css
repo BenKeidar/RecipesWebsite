@@ -69,6 +69,7 @@ button:hover{
     align-items: right;
     position:sticky; 
     text-align: right; 
+    direction: rtl;
 }
 
 .details .origins{

@@ -29,6 +29,12 @@
         </text-input>
 
         <text-input
+            [control]="fc['stuffingIng']"
+            [showErrorsWhen]="isSubmitted"
+            label="מצרכים למילוי (אופציונלי)">
+        </text-input>
+
+        <text-input
             [control]="fc['tags']"
             [showErrorsWhen]="isSubmitted"
             label="תגיות">
