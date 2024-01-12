@@ -90,12 +90,12 @@
             <h1>למילוי:</h1>
             <div class="items">
                 <span *ngFor="let ingredient of food.stuffingIng">        
-                    <li *ngIf="checkIfEvenS(ingredient)">
+                    <li *ngIf="checkIfEvenSt(ingredient)">
                        <div class="even">
                             {{ingredient}}
                        </div>
                     </li> 
-                    <li *ngIf="!checkIfEvenS(ingredient)">
+                    <li *ngIf="!checkIfEvenSt(ingredient)">
                         <div class="odd">
                             {{ingredient}}
                        </div>

@@ -64,6 +64,16 @@ export class FoodPageComponent implements OnInit{
     return false;
   }
 
+  checkIfEvenSt(s:string): boolean{
+    if(this.food.stuffingIng?.indexOf(s) != null){
+      if(this.food.stuffingIng?.indexOf(s) %2 != 0){
+        return false;
+      }
+      return true;
+    }
+    return false;
+  }
+
   get isAuth(){
     return this.user.token;
   }
