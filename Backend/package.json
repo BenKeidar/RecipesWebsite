@@ -8,8 +8,8 @@
   "main": "index.js",
   "scripts": {
     "start": "cd src && nodemon server.ts",
-    "prebuild": "cd Backend && nmp run build",
-    "build": "cd Frontkend && nmp run build",
+    "prebuild": "cd Backend && npm run build",
+    "build": "cd Frontkend && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
