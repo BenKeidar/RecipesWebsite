@@ -42,7 +42,7 @@ export class EditComponent  implements OnInit{
 
       this.uploadForm = this.formBuilder.group({
         name: ['', [Validators.required, Validators.minLength(2)]],
-        ingredients: [[''], [Validators.required]],
+        ingredients: [[''], ],
         doughIng: [[''], ],
         sauceIng: [[''], ],
         stuffingIng: [[''], ],
@@ -60,7 +60,7 @@ export class EditComponent  implements OnInit{
 
       this.uploadForm.setValue({
         name: this.food.name,
-        ingredients: this.food.ingredients.toString(),
+        ingredients: this.food.ingredients?.toString(),
         doughIng: this.food.doughIng?.toString(),
         sauceIng: this.food.sauceIng?.toString(),
         stuffingIng: this.food.stuffingIng?.toString(),
@@ -114,25 +114,30 @@ export class EditComponent  implements OnInit{
     if(this.isImgChanged)
       img = this.base64String;
 
-    var d = undefined;
+    var ing = undefined;
+    console.log(fv.ingredients);
+    if(fv.ingredients.includes(","))
+      ing = fv.ingredients.split(",");
+
+    var dough = undefined;
     if(fv.doughIng.includes(","))
-      d = fv.doughIng.split(",");
+      dough = fv.doughIng.split(",");
 
-    var sa = undefined;
+    var sauce = undefined;
     if(fv.sauceIng.includes(","))
-      sa = fv.sauceIng.split(",");
+      sauce = fv.sauceIng.split(",");
 
-    var st = undefined;
+    var stuffing = undefined;
     if(fv.stuffingIng.includes(","))
-      st = fv.stuffingIng.split(",");
+      stuffing = fv.stuffingIng.split(",");
 
     const recipe :IFoodUpload = {
       id: this.food.id,
       name: fv.name,
-      ingredients: fv.ingredients.split(","),
-      doughIng: d,
-      sauceIng: sa,
-      stuffingIng: st,
+      ingredients: ing,
+      doughIng: dough,
+      sauceIng: sauce,
+      stuffingIng: stuffing,
       tags: fv.tags.split(","),
       instructions: fv.instructions.split(","),
       imageUrl: img,

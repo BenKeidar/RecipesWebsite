@@ -30,7 +30,7 @@ export class UploadComponent implements OnInit{
     ngOnInit(): void {
       this.uploadForm = this.formBuilder.group({
         name: ['', [Validators.required, Validators.minLength(2)]],
-        ingredients: [[''], [Validators.required]],
+        ingredients: [[''], ],
         doughIng: [[''], ],
         sauceIng: [[''], ],
         stuffingIng: [[''], ],
@@ -73,25 +73,29 @@ export class UploadComponent implements OnInit{
   
       const fv= this.uploadForm.value;
 
-      var d = undefined;
+      var ing = undefined;
+      if(fv.ingredients.includes(","))
+        ing = fv.ingredients.split(",");
+
+      var dough = undefined;
       if(fv.doughIng.includes(","))
-        d = fv.doughIng.split(",");
+        dough = fv.doughIng.split(",");
 
-      var sa = undefined;
+      var sauce = undefined;
       if(fv.sauceIng.includes(","))
-        sa = fv.sauceIng.split(",");
+        sauce = fv.sauceIng.split(",");
 
-      var st = undefined;
+      var stuffing = undefined;
       if(fv.stuffingIng.includes(","))
-        st = fv.stuffingIng.split(",");
+        stuffing = fv.stuffingIng.split(",");
 
       const recipe :IFoodUpload = {
         id:1,
         name: fv.name,
-        ingredients: fv.ingredients.split(","),
-        doughIng: d,
-        sauceIng: sa,
-        stuffingIng: st,
+        ingredients: ing,
+        doughIng: dough,
+        sauceIng: sauce,
+        stuffingIng: stuffing,
         tags: fv.tags.split(","),
         instructions: fv.instructions.split(","),
         imageUrl: this.base64String,
@@ -105,4 +109,3 @@ export class UploadComponent implements OnInit{
       })
     }
 }
-

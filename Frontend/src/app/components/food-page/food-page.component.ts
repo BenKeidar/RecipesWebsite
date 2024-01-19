@@ -44,9 +44,11 @@ export class FoodPageComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  checkIfEven(s:string): boolean{
-    if(this.food.doughIng?.indexOf(s) != null){
-      if(this.food.doughIng?.indexOf(s) %2 != 0){
+  checkIfEven(s:string, arr:string[] | undefined): boolean{
+    if(arr == undefined)
+      return false;
+    if(arr.indexOf(s) != null){
+      if(arr.indexOf(s) %2 != 0){
         return false;
       }
       return true;

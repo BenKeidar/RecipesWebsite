@@ -1,6 +1,9 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "engines":{
+    "node": ">=20 <21"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^20.11.5",
     "@types/webidl-conversions": "^7.0.3",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

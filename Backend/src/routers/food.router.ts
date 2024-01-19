@@ -151,8 +151,6 @@ router.post('/Edit', asynceHandler(
     async (req,res) =>{
         const {id, name, ingredients, doughIng, sauceIng, stuffingIng, tags, instructions, imageUrl, origins, cookTime, link} = req.body;
 
-        console.log("888888888888888");
-
         //Create new recipe
         const newFood:Food = {
         id:'',

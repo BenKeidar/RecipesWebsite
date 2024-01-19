@@ -13,11 +13,14 @@
             <div class="name">
                 {{food.name}}
             </div>
-            <span class="myBtns">
-                <button (click)="setFav()" class="favorite {{food.favorite? '': 'not'}}" *ngIf="user.token" ><i class="fa fa-heart"></i></button>
-                <button class="btn" *ngIf="user.isAdmin" routerLink="/edit"><i class="fa fa-edit"></i></button>
-                <button class="btn" *ngIf="user.isAdmin" routerLink="/delete/{{food.id}}"><i class="fa fa-trash"></i></button>
-            </span>
+            <div>
+                <span class="myBtns">
+                    <button (click)="setFav()" class="favorite {{food.favorite? '': 'not'}}" *ngIf="user.token" ><i class="fa fa-heart"></i></button>
+                    <button class="btn" *ngIf="user.isAdmin" routerLink="/edit"><i class="fa fa-edit"></i></button>
+                    <button class="btn" *ngIf="user.isAdmin" routerLink="/delete/{{food.id}}"><i class="fa fa-trash"></i></button>
+                </span>
+            </div>
+
         </div>
         <div class="origins">
             <span *ngFor="let origin of food.origins">
@@ -39,12 +42,12 @@
             <h1>מצרכים:</h1>
             <div class="items">
                 <span *ngFor="let ingredient of food.ingredients">        
-                    <li *ngIf="food.ingredients.indexOf(ingredient) % 2 == 0">
+                    <li *ngIf="checkIfEven(ingredient, food.ingredients)">
                        <div class="even">
                             {{ingredient}}
                        </div>
                     </li> 
-                    <li *ngIf="food.ingredients.indexOf(ingredient) % 2 != 0">
+                    <li *ngIf="!checkIfEven(ingredient, food.ingredients)">
                         <div class="odd">
                             {{ingredient}}
                        </div>
@@ -56,12 +59,12 @@
             <h1>לבצק:</h1>
             <div class="items">
                 <span *ngFor="let ingredient of food.doughIng">        
-                    <li *ngIf="checkIfEven(ingredient)">
-                       <div class="even" *ngIf="checkIfEven(ingredient)">
+                    <li *ngIf="checkIfEven(ingredient, food.doughIng)">
+                       <div class="even">
                             {{ingredient}}
                        </div>
                     </li> 
-                    <li *ngIf="!checkIfEven(ingredient)">
+                    <li *ngIf="!checkIfEven(ingredient, food.doughIng)">
                         <div class="odd">
                             {{ingredient}}
                        </div>
@@ -73,12 +76,12 @@
             <h1>לרוטב:</h1>
             <div class="items">
                 <span *ngFor="let ingredient of food.sauceIng">        
-                    <li *ngIf="checkIfEvenS(ingredient)">
+                    <li *ngIf="checkIfEven(ingredient, food.sauceIng)">
                        <div class="even">
                             {{ingredient}}
                        </div>
                     </li> 
-                    <li *ngIf="!checkIfEvenS(ingredient)">
+                    <li *ngIf="!checkIfEven(ingredient, food.sauceIng)">
                         <div class="odd">
                             {{ingredient}}
                        </div>
@@ -90,12 +93,12 @@
             <h1>למילוי:</h1>
             <div class="items">
                 <span *ngFor="let ingredient of food.stuffingIng">        
-                    <li *ngIf="checkIfEvenSt(ingredient)">
+                    <li *ngIf="checkIfEven(ingredient, food.stuffingIng)">
                        <div class="even">
                             {{ingredient}}
                        </div>
                     </li> 
-                    <li *ngIf="!checkIfEvenSt(ingredient)">
+                    <li *ngIf="!checkIfEven(ingredient, food.stuffingIng)">
                         <div class="odd">
                             {{ingredient}}
                        </div>

@@ -1,7 +1,7 @@
 export class Food{
     id!:number;
     name!:string;
-    ingredients!:string[];
+    ingredients?:string[];
     doughIng?:string[];
     sauceIng?:string[];
     stuffingIng?:string[];
