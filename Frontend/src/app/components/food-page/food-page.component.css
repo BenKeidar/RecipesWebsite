@@ -75,14 +75,14 @@ button:hover{
 .details .origins{
     display: flex;
     flex-wrap: wrap;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     justify-content: right;
     align-items: right;
     position:sticky;
 }
 
 .details .origins > span{
-    padding: .5rem;
+    padding: .3rem .7rem .5rem;
     font-size: 1.2rem;
     font-weight: 600;
     margin: .5rem .5rem .5rem 0;
@@ -100,7 +100,7 @@ button:hover{
 }
 
 .details .cook-time span{
-    padding: .6rem .6rem .6rem .6rem;
+    padding: .3rem .7rem .5rem;
     border-radius: 10rem;
     font-size: 1.2rem;
     font-weight: 600;

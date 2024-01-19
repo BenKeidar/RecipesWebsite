@@ -4,6 +4,10 @@ div{
     /*justify-content: center;*/
 }
 
+a{
+    padding: .5rem .06rem;
+}
+
 div a span{
     background-color: #f0f0f0;
     padding: .3rem 1rem;
