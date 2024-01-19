@@ -6,7 +6,7 @@
 
   "scripts": {
     "dev": "cd frontend && npm start & cd backend && npm start",
-    "start": "cd backend/built && node server.js",
+    "start": "cd frontend && npm start & cd backend && npm start",
     "prebuild": "cd Backend && npm run build",
     "build": "cd Frontend && npm run build"
   }
