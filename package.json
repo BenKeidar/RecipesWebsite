@@ -6,6 +6,6 @@
 
   "scripts": {
     "prebuild": "cd Backend && npm run build",
-    "build": "cd Frontkend && npm run build"
+    "build": "cd Frontend && npm run build"
   }
 }
