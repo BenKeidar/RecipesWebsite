@@ -28,6 +28,11 @@ app.use("/api/users", userRouter);
 
 const port = 5000;
 
+app.get('/', function(req, res) {
+    console.log("start");
+    res.sendFile('Frontend/src/index.html', {root: __dirname });
+});
+
 //===================================Listener===============================================
 app.listen(port, ()=>{
     console.log("Website served on http://localhost:" + port);
