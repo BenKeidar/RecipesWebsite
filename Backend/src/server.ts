@@ -5,8 +5,9 @@ import express from "express";
 import cors from "cors";
 import foodRouter from './routers/food.router';
 import userRouter from './routers/user.router';
-
+import path from 'path';
 import { dbConnect } from './configs/database.config';
+
 dbConnect();
 
 const app = express();
@@ -26,6 +27,11 @@ app.use("/api/foods", foodRouter);
 app.use("/api/users", userRouter);
 
 const port = 5000;
+
+app.use(express.static('public'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname,'public', 'index.html'))
+})
 
 //===================================Listener===============================================
 app.listen(port, ()=>{
