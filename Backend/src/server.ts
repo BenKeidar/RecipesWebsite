@@ -30,7 +30,7 @@ const port = 5000;
 
 app.use(express.static('public'));
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname,'public', 'Frontend/src/index.html'))
+    res.sendFile('Frontend/src/index.html');
 })
 
 //
