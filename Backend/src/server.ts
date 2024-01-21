@@ -28,13 +28,6 @@ app.use("/api/users", userRouter);
 
 const port = 5000;
 
-app.use(express.static('public'));
-app.get('*', (req, res) => {
-    res.sendFile('Frontend/src/index.html');
-})
-
-//
-
 //===================================Listener===============================================
 app.listen(port, ()=>{
     console.log("Website served on http://localhost:" + port);

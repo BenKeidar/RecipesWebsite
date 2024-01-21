@@ -5,7 +5,7 @@
   },
 
   "scripts": {
-    "start": "cd Backend/built && node server.js",
+    "start": "cd Frontend/src/index.html",
     "prebuild": "cd Backend && npm run build",
     "build": "cd Frontend && npm run build"
   }
