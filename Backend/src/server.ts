@@ -28,10 +28,10 @@ app.use("/api/users", userRouter);
 
 const port = 5000;
 
-app.get('/', function(req, res) {
-    console.log("start");
-    res.sendFile('Frontend/src/index.html', {root: __dirname });
-});
+app.use(express.static('public'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname,'public', 'index.html'))
+})
 
 //===================================Listener===============================================
 app.listen(port, ()=>{

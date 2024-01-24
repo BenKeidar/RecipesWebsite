@@ -8,6 +8,7 @@ import { IFoodUpload } from 'src/app/shared/interfaces/IFoodUpload';
 import { Tag } from 'src/app/shared/models/Tag';
 import { Food } from 'src/app/shared/models/food';
 //import { sample_foods } from 'src/data';
+import * as JSLZString from 'lz-string';
 
 const FOOD_KEY = 'Food';
 @Injectable({
@@ -141,13 +142,18 @@ export class FoodService {
   
   //-----------------------------------Functions-----------------------------------------------
   public setFoodToLocalStorage(food:Food){
-    localStorage.setItem(FOOD_KEY, JSON.stringify(food));
+    localStorage.clear();
+    //localStorage.setItem(FOOD_KEY, JSON.stringify(food));
+    localStorage.setItem(FOOD_KEY, JSLZString.compressToUTF16(JSON.stringify(food)));
     this.saved = true;
     //this.foodSubject = food;
   }
 
   public getUserFromLocalStorage():Food{
-    const userJson = localStorage.getItem(FOOD_KEY);
+    var s = localStorage.getItem(FOOD_KEY);
+    if(s == null)
+      s="1";
+    const userJson = JSLZString.decompressFromUTF16(s);
     if(userJson && this.saved) return JSON.parse(userJson) as Food;
     return new Food();
     // if(this.foodSubject)

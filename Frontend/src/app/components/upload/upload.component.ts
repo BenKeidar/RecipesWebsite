@@ -76,18 +76,26 @@ export class UploadComponent implements OnInit{
       var ing = undefined;
       if(fv.ingredients.includes(","))
         ing = fv.ingredients.split(",");
+      else if(fv.ingredients != "")
+        ing = fv.ingredients;
 
       var dough = undefined;
       if(fv.doughIng.includes(","))
         dough = fv.doughIng.split(",");
+      else if(fv.doughIng != "")
+        dough = fv.doughIng;
 
       var sauce = undefined;
       if(fv.sauceIng.includes(","))
         sauce = fv.sauceIng.split(",");
+      else if(fv.sauceIng != "")
+        sauce = fv.sauceIng;
 
       var stuffing = undefined;
       if(fv.stuffingIng.includes(","))
         stuffing = fv.stuffingIng.split(",");
+      else if(fv.stuffingIng != "")
+        stuffing = fv.stuffingIng;
 
       const recipe :IFoodUpload = {
         id:1,

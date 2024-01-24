@@ -32,12 +32,12 @@ export class UserServiceTsService {
           this.setUserToLocalStorage(user);
           this.userSubject.next(user);
           this.toastrService.success(
-            `Welcome to Ben Apetite ${user.name}!`,
-            'Login Successful'
+            `ברוך הבא ${user.name}!`,
+            'התחברת בהצלחה'
           )
         },
         error: (errorResponse) => {
-          this.toastrService.error(errorResponse.error, 'Login Failed');
+          this.toastrService.error(errorResponse.error, 'ההתחברות נכשלה');
         }
       })
     );
@@ -56,13 +56,13 @@ export class UserServiceTsService {
           this.setUserToLocalStorage(user);
           this.userSubject.next(user);
           this.toastrService.success(
-            `Welcome to the Foodmine ${user.name}`,
-            'Register Successful'
+            `ברוך הבא ${user.name}`,
+            'נרשמת בהצלחה'
           )
         },
         error: (errorResponse) => {
           this.toastrService.error(errorResponse.error,
-            'Register Failed')
+            'ההרשמה נכשלה')
         }
       })
     )
