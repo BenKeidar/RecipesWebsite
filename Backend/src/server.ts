@@ -29,9 +29,9 @@ app.use("/api/users", userRouter);
 const port = 5000;
 
 app.use(express.static('dist/recipes'));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname,'dist/recipes', 'index.html'))
-})
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname,'dist/recipes', 'index.html'))
+// })
 
 //===================================Listener===============================================
 app.listen(port, ()=>{
